@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="center" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cloud.storage.client.Controller">
+    <VBox fx:id="mainArea" VBox.vgrow="ALWAYS">
+        <HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <VBox fx:id="localArea" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                    <Text text="LOCAL" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                  <HBox.margin>
+                     <Insets top="10.0" />
+                  </HBox.margin></Text>
+                </HBox>
+                <HBox fx:id="chooseLocalDirArea" alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <Button fx:id="btnChooseLocalDir" onAction="#btnChooseDirClick" text="Choose local directory" />
+                </HBox>
+                <VBox fx:id="localTableArea" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <HBox fx:id="localControlPanel" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                        <Button fx:id="btnChangeLocalDir" onAction="#btnChangeDirClick" text="Browse..." />
+                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                            <Button fx:id="btnRefreshLocal" onAction="#btnRefreshLocal" text="Refresh"/>
+                            <Button fx:id="btnRenameLocalFile" onAction="#btnRenameLocalFile" text="Rename" />
+                            <Button fx:id="btnDeleteLocalFile" onAction="#btnDeleteLocalFile" text="Delete" />
+                        </HBox>
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                    </HBox>
+                    <TableView fx:id="localTable" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    </TableView>
+                    <HBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                        <Text fx:id="localSpaceDesc" textAlignment="RIGHT" HBox.hgrow="ALWAYS" text="Space available: "/>
+                        <Text fx:id="localSpaceValue" textAlignment="LEFT" HBox.hgrow="ALWAYS" text="unknown"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+            <VBox fx:id="transferBtnArea" alignment="CENTER">
+                <Button fx:id="sendBtn" alignment="CENTER" onAction="#btnSendClick" prefWidth="64.0" text="send→">
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="receiveBtn" alignment="CENTER" onAction="#btnReceiveClick" text="←receive" />
+            <HBox.margin>
+               <Insets left="10.0" right="10.0" />
+            </HBox.margin>
+
+            </VBox>
+
+            <VBox fx:id="remoteArea" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                    <Text text="REMOTE" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                  <HBox.margin>
+                     <Insets top="10.0" />
+                  </HBox.margin></Text>
+                </HBox>
+                <VBox fx:id="loginArea" alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <HBox alignment="CENTER">
+                        <Text text="Login: " HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                        </Text>
+                        <TextField fx:id="fieldLogin" />
+                        <VBox.margin>
+                            <Insets bottom="10.0" />
+                        </VBox.margin>
+                    </HBox>
+
+                    <HBox alignment="CENTER">
+                        <Text text="Password: ">
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
+                        </Text>
+                        <PasswordField fx:id="fieldPassword" />
+                        <VBox.margin>
+                            <Insets bottom="10.0" />
+                        </VBox.margin>
+                    </HBox>
+
+                    <HBox alignment="CENTER">
+                        <Button fx:id="btnConnect" alignment="CENTER" onAction="#btnConnectClick" text="Connect to server" HBox.hgrow="ALWAYS" />
+                        <padding>
+                            <Insets left="65.0" />
+                        </padding>
+                    </HBox>
+
+                    <HBox alignment="CENTER">
+                        <Button fx:id="btnRegister" alignment="CENTER" onAction="#btnRegisterClick" text="Registration" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin></Button>
+                        <padding>
+                            <Insets left="65.0" />
+                        </padding>
+                    </HBox>
+                </VBox>
+                <VBox fx:id="remoteTableArea" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <HBox fx:id="remoteControlPanel" alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                            <Button fx:id="btnDeleteRemoteFile" onAction="#btnDeleteRemoteFile" text="Delete" />
+                            <Button fx:id="btnRenameRemoteFile" onAction="#btnRenameRemoteFile" text="Rename" />
+                            <Button fx:id="btnRefreshRemote" onAction="#btnRefreshRemote" text="Refresh" />
+                        </HBox>
+                        <Button fx:id="btnLogout" onAction="#btnLogoutClick" text="Logout" />
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                    </HBox>
+                    <TableView fx:id="remoteTable" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    </TableView>
+                    <HBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                        <Text fx:id="remoteSpaceDesc" textAlignment="RIGHT" HBox.hgrow="ALWAYS" text="Space available: "/>
+                        <Text fx:id="remoteSpaceValue" textAlignment="LEFT" HBox.hgrow="ALWAYS" text="unknown"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+        <VBox fx:id="logArea" HBox.hgrow="ALWAYS">
+            <ListView fx:id="logAreaList" maxHeight="-Infinity" prefHeight="110.0" HBox.hgrow="ALWAYS">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin></ListView>
+        </VBox>
+    </VBox>
+</VBox>
